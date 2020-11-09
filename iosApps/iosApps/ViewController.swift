@@ -15,10 +15,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        //alle setup
-        view.backgroundColor = .white
         
         setUpView()
         setupConstraints()
@@ -26,6 +22,8 @@ class ViewController: UIViewController {
     
     func setUpView() {
      
+        view.backgroundColor = .white
+        
         welkomLabel = UILabel()
         welkomLabel.text = "Welkom!"
         //UIColor.black
@@ -50,6 +48,7 @@ class ViewController: UIViewController {
         playButton.layer.borderWidth = 1
         //cgColor voor layers
         playButton.layer.borderColor = UIColor.black.cgColor
+        playButton.addTarget(self, action: #selector(pushNavViewController), for: .touchUpInside)
         playButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(playButton)
     }
@@ -76,5 +75,14 @@ class ViewController: UIViewController {
         ])
     }
     
+    @objc func pushNavViewController() {
+        let newViewController = PlayerViewController()
+        navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    @objc func pushModelViewControler() {
+        let newViewController = ModalViewController()
+        present(newViewController, animated: true, completion: nil)
+    }
 }
 

@@ -15,6 +15,9 @@
 		14A2E8152556F0430072F259 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A2E8132556F0430072F259 /* LaunchScreen.storyboard */; };
 		14A2E8202556F0430072F259 /* iosAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E81F2556F0430072F259 /* iosAppsTests.swift */; };
 		14A2E82B2556F0430072F259 /* iosAppsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E82A2556F0430072F259 /* iosAppsUITests.swift */; };
+		14FDADF125594FD400AEBC87 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDADF025594FD400AEBC87 /* PlayerViewController.swift */; };
+		14FDADF62559513600AEBC87 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDADF52559513600AEBC87 /* ModalViewController.swift */; };
+		14FDADFB25595B0F00AEBC87 /* TypeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDADFA25595B0F00AEBC87 /* TypeGameController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		14A2E8262556F0430072F259 /* iosAppsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosAppsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A2E82A2556F0430072F259 /* iosAppsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppsUITests.swift; sourceTree = "<group>"; };
 		14A2E82C2556F0430072F259 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14FDADF025594FD400AEBC87 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		14FDADF52559513600AEBC87 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		14FDADFA25595B0F00AEBC87 /* TypeGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeGameController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,9 @@
 				14A2E8082556F0400072F259 /* AppDelegate.swift */,
 				14A2E80A2556F0400072F259 /* SceneDelegate.swift */,
 				14A2E80C2556F0400072F259 /* ViewController.swift */,
+				14FDADFA25595B0F00AEBC87 /* TypeGameController.swift */,
+				14FDADF025594FD400AEBC87 /* PlayerViewController.swift */,
+				14FDADF52559513600AEBC87 /* ModalViewController.swift */,
 				14A2E80E2556F0400072F259 /* Main.storyboard */,
 				14A2E8112556F0430072F259 /* Assets.xcassets */,
 				14A2E8132556F0430072F259 /* LaunchScreen.storyboard */,
@@ -259,6 +268,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				14A2E80D2556F0400072F259 /* ViewController.swift in Sources */,
+				14FDADF62559513600AEBC87 /* ModalViewController.swift in Sources */,
+				14FDADF125594FD400AEBC87 /* PlayerViewController.swift in Sources */,
+				14FDADFB25595B0F00AEBC87 /* TypeGameController.swift in Sources */,
 				14A2E8092556F0400072F259 /* AppDelegate.swift in Sources */,
 				14A2E80B2556F0400072F259 /* SceneDelegate.swift in Sources */,
 			);
