@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		148A818B255AC6470066C9C6 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 148A818A255AC6470066C9C6 /* SwiftyJSON */; };
 		14A2E8092556F0400072F259 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E8082556F0400072F259 /* AppDelegate.swift */; };
 		14A2E80B2556F0400072F259 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E80A2556F0400072F259 /* SceneDelegate.swift */; };
 		14A2E80D2556F0400072F259 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E80C2556F0400072F259 /* ViewController.swift */; };
@@ -18,6 +19,8 @@
 		14FDADF125594FD400AEBC87 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDADF025594FD400AEBC87 /* PlayerViewController.swift */; };
 		14FDADF62559513600AEBC87 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDADF52559513600AEBC87 /* ModalViewController.swift */; };
 		14FDADFB25595B0F00AEBC87 /* TypeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDADFA25595B0F00AEBC87 /* TypeGameController.swift */; };
+		14FDAE002559A9ED00AEBC87 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDADFF2559A9ED00AEBC87 /* GameViewController.swift */; };
+		14FDAE0D2559ABCE00AEBC87 /* cards.json in Resources */ = {isa = PBXBuildFile; fileRef = 14FDAE0C2559ABCE00AEBC87 /* cards.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,8 @@
 		14FDADF025594FD400AEBC87 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		14FDADF52559513600AEBC87 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		14FDADFA25595B0F00AEBC87 /* TypeGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeGameController.swift; sourceTree = "<group>"; };
+		14FDADFF2559A9ED00AEBC87 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		14FDAE0C2559ABCE00AEBC87 /* cards.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cards.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				148A818B255AC6470066C9C6 /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,10 +115,12 @@
 				14A2E80A2556F0400072F259 /* SceneDelegate.swift */,
 				14A2E80C2556F0400072F259 /* ViewController.swift */,
 				14FDADFA25595B0F00AEBC87 /* TypeGameController.swift */,
+				14FDADFF2559A9ED00AEBC87 /* GameViewController.swift */,
 				14FDADF025594FD400AEBC87 /* PlayerViewController.swift */,
 				14FDADF52559513600AEBC87 /* ModalViewController.swift */,
 				14A2E80E2556F0400072F259 /* Main.storyboard */,
 				14A2E8112556F0430072F259 /* Assets.xcassets */,
+				14FDAE0C2559ABCE00AEBC87 /* cards.json */,
 				14A2E8132556F0430072F259 /* LaunchScreen.storyboard */,
 				14A2E8162556F0430072F259 /* Info.plist */,
 			);
@@ -153,6 +161,9 @@
 			dependencies = (
 			);
 			name = iosApps;
+			packageProductDependencies = (
+				148A818A255AC6470066C9C6 /* SwiftyJSON */,
+			);
 			productName = iosApps;
 			productReference = 14A2E8052556F0400072F259 /* iosApps.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +235,9 @@
 				Base,
 			);
 			mainGroup = 14A2E7FC2556F0400072F259;
+			packageReferences = (
+				148A8189255AC6470066C9C6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			productRefGroup = 14A2E8062556F0400072F259 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -240,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14FDAE0D2559ABCE00AEBC87 /* cards.json in Resources */,
 				14A2E8152556F0430072F259 /* LaunchScreen.storyboard in Resources */,
 				14A2E8122556F0430072F259 /* Assets.xcassets in Resources */,
 				14A2E8102556F0400072F259 /* Main.storyboard in Resources */,
@@ -267,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14FDAE002559A9ED00AEBC87 /* GameViewController.swift in Sources */,
 				14A2E80D2556F0400072F259 /* ViewController.swift in Sources */,
 				14FDADF62559513600AEBC87 /* ModalViewController.swift in Sources */,
 				14FDADF125594FD400AEBC87 /* PlayerViewController.swift in Sources */,
@@ -599,6 +615,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		148A8189255AC6470066C9C6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		148A818A255AC6470066C9C6 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 148A8189255AC6470066C9C6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 14A2E7FD2556F0400072F259 /* Project object */;
 }

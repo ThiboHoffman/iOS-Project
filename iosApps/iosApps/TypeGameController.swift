@@ -33,7 +33,7 @@ class TypeGameController: UIViewController {
         casualBtn.layer.borderColor = UIColor.black.cgColor
         casualBtn.layer.cornerRadius = 10
         casualBtn.clipsToBounds = true
-        //casualBtn.addTarget(self, action: #selector(addPlayerTextField), for: .touchUpInside)
+        casualBtn.addTarget(self, action: #selector(pushNavViewController), for: .touchUpInside)
         casualBtn.translatesAutoresizingMaskIntoConstraints = false
         
         stackView = UIStackView()
@@ -52,6 +52,11 @@ class TypeGameController: UIViewController {
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
         ])
         
+    }
+    
+    @objc func pushNavViewController() {
+        let newViewController = GameViewController()
+        navigationController?.pushViewController(newViewController, animated: true)
     }
     
 
