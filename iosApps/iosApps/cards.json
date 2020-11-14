@@ -1,31 +1,72 @@
-[{
-        "text": "ZUIPEN 1"
+{
+    "casual": {
+        "cards": [
+            {
+                "text": "${name} ZUIPEN 1"
+            },
+            {
+                "text": "${name} ZUIPEN 2"
+            },
+            {
+                "text": "${name} ZUIPEN 3"
+            },
+            {
+                "text": "${name} ZUIPEN 4"
+            },
+            {
+                "text": "${name} ZUIPEN 5"
+            },
+            {
+                "text": "${name} ZUIPEN 6"
+            },
+            {
+                "text": "${name} ZUIPEN 7"
+            },
+            {
+                "text": "${name} ZUIPEN 8"
+            },
+            {
+                "text": "${name} ZUIPEN 9"
+            },
+            {
+                "text": "${name} ZUIPEN 10"
+            }
+        ]
     },
-    {
-        "text": "ZUIPEN 2"
-    },
-    {
-        "text": "ZUIPEN 3"
-    },
-    {
-        "text": "ZUIPEN 4"
-    },
-    {
-        "text": "ZUIPEN 5"
-    },
-    {
-        "text": "ZUIPEN 6"
-    },
-    {
-        "text": "ZUIPEN 7"
-    },
-    {
-        "text": "ZUIPEN 8"
-    },
-    {
-        "text": "ZUIPEN 9"
-    },
-    {
-        "text": "ZUIPEN 10"
+    "wild": {
+        "cards": [
+            {
+                "text": "${name} WILD ZUIPEN 1"
+            },
+            {
+                "text": "${name} WILD ZUIPEN 2"
+            },
+            {
+                "text": "${name} WILD ZUIPEN 3"
+            },
+            {
+                "text": "${name} WILD ZUIPEN 4"
+            },
+            {
+                "text": "${name} WILD ZUIPEN 5"
+            },
+            {
+                "text": "${name} WILD ZUIPEN 6"
+            },
+            {
+                "text": "${name} WILD ZUIPEN 7"
+            },
+            {
+                "text": "${name} WILD ZUIPEN 8"
+            },
+            {
+                "text": "${name} WILD ZUIPEN 9"
+            },
+            {
+                "text": "${name} WILD ZUIPEN 10"
+            }
+        ]
     }
-]
+}
+
+

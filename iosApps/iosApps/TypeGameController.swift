@@ -12,6 +12,7 @@ class TypeGameController: UIViewController {
     //var game: GameModel
     var stackView: UIStackView!
     var casualBtn: UIButton!
+    var wildBtn: UIButton!
     var game: GameModel!
     
     override func viewDidLoad() {
@@ -41,12 +42,24 @@ class TypeGameController: UIViewController {
         casualBtn.addTarget(self, action: #selector(pushNavViewController), for: .touchUpInside)
         casualBtn.translatesAutoresizingMaskIntoConstraints = false
         
+        wildBtn = UIButton()
+        wildBtn.setTitle("Wild", for: .normal)
+        wildBtn.setTitleColor(.blue, for: .normal)
+        wildBtn.layer.borderWidth = 1
+        wildBtn.layer.borderColor = UIColor.black.cgColor
+        wildBtn.layer.cornerRadius = 10
+        wildBtn.clipsToBounds = true
+        wildBtn.addTarget(self, action: #selector(pushNavViewController), for: .touchUpInside)
+        wildBtn.translatesAutoresizingMaskIntoConstraints = false
+        
+        
         stackView = UIStackView()
         stackView.alignment = .center
         stackView.spacing = 8.0
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(casualBtn)
+        stackView.addArrangedSubview(wildBtn)
         view.addSubview(stackView)
     }
     

@@ -51,17 +51,18 @@ class GameViewController: UIViewController {
             let data = try Data(contentsOf: url)
 
             let json = try JSON(data: data)
-            
-            cardsPresent = json.array!.count
+            cardsPresent = json[game.type.lowercased()]["cards"].count
+            print(cardsPresent)
             getIndices()
             
+            print(indices)
             for index in indices {
-                if let textString = json[index]["text"].string {
-                    cards.append(textString)
+                if let textString = json[game.type.lowercased()]["cards"].array?[index-1]["text"].string {
+                    cards.append(textString.replacingOccurrences(of: "${name}", with: String(game.players[Int.random(in: 0...(game.players.count-1))])))
                 }
             }
-            
-            text.text = cards[current]
+            print(cards)
+            showCard()
             
         } catch {
 
@@ -80,6 +81,10 @@ class GameViewController: UIViewController {
         
     }
     
+    func showCard() {
+        text.text = cards[current]
+    }
+    
     func getIndices() {
         for _ in 0...cardsWanted {
             var rand = Int.random(in: 1...cardsPresent)
@@ -95,7 +100,7 @@ class GameViewController: UIViewController {
         if (current == cards.count-1) {
             navigationController?.popViewController(animated: true)
         }
-        text.text = cards[current]
+        showCard()
     }
     
     override var shouldAutorotate: Bool {

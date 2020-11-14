@@ -86,7 +86,7 @@ class PlayerViewController: UIViewController {
     
     
     func createGame() -> GameModel {
-        var game = GameModel()
+        let game = GameModel()
         for playerField in playerFields {
             if playerField.text != "" {
                 game.players.append(playerField.text!)
