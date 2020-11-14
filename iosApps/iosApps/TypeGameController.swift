@@ -9,13 +9,17 @@ import UIKit
 
 class TypeGameController: UIViewController {
 
-    
+    //var game: GameModel
     var stackView: UIStackView!
     var casualBtn: UIButton!
+    var game: GameModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        
         setUpView()
         setUpContraints()
     }
@@ -23,9 +27,10 @@ class TypeGameController: UIViewController {
     
     func setUpView() {
         
+        print(game.players)
+        
         view.backgroundColor = .white
         title = "Choose game type"
-        
         casualBtn = UIButton()
         casualBtn.setTitle("Casual", for: .normal)
         casualBtn.setTitleColor(.blue, for: .normal)
@@ -54,11 +59,21 @@ class TypeGameController: UIViewController {
         
     }
     
-    @objc func pushNavViewController() {
+    @objc func pushNavViewController(sender: UIButton) {
         let newViewController = GameViewController()
+        game.type = sender.currentTitle!
+        newViewController.game = game
         navigationController?.pushViewController(newViewController, animated: true)
     }
     
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
 
     /*
     // MARK: - Navigation

@@ -84,6 +84,17 @@ class PlayerViewController: UIViewController {
         ])
     }
     
+    
+    func createGame() -> GameModel {
+        var game = GameModel()
+        for playerField in playerFields {
+            if playerField.text != "" {
+                game.players.append(playerField.text!)
+            }
+        }
+        return game
+    }
+    
     @objc func addPlayerTextField() {
         let playerFieldExtra: UITextField = UITextField()
         playerFieldExtra.placeholder = "Player " + String(playerFields.count+1)
@@ -91,12 +102,13 @@ class PlayerViewController: UIViewController {
         stackView.addArrangedSubview(playerFieldExtra)
     }
     
-    
     @objc func pushNavViewController() {
+        
         let newViewController = TypeGameController()
+        newViewController.game = createGame()
         navigationController?.pushViewController(newViewController, animated: true)
     }
-
+ 
     /*
     // MARK: - Navigation
 

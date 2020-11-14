@@ -10,7 +10,13 @@ import SwiftyJSON
 
 class GameViewController: UIViewController {
 
+    var game: GameModel!
     var text: UILabel!
+    var cards: [String] = []
+    var indices: [Int] = []
+    var current: Int = 0
+    var cardsWanted: Int = 5
+    var cardsPresent: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +32,15 @@ class GameViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        text = UILabel()
+        text = UILabel(frame: CGRect(x:0, y:0, width:200, height:21))
+        text.center = CGPoint(x:160, y:284)
         text.textColor = .black
-        text.text = "Hallo"
         text.textAlignment = .center
         text.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         text.translatesAutoresizingMaskIntoConstraints = false
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameViewController.handleTap))
+        text.isUserInteractionEnabled = true
+        text.addGestureRecognizer(gestureRecognizer)
         
         guard let path = Bundle.main.path(forResource: "cards", ofType: "json") else { return }
 
@@ -42,9 +51,18 @@ class GameViewController: UIViewController {
             let data = try Data(contentsOf: url)
 
             let json = try JSON(data: data)
-            if let textString = json[0]["text"].string {
-                text.text = textString
+            
+            cardsPresent = json.array!.count
+            getIndices()
+            
+            for index in indices {
+                if let textString = json[index]["text"].string {
+                    cards.append(textString)
+                }
             }
+            
+            text.text = cards[current]
+            
         } catch {
 
             print(error)
@@ -62,8 +80,26 @@ class GameViewController: UIViewController {
         
     }
     
+    func getIndices() {
+        for _ in 0...cardsWanted {
+            var rand = Int.random(in: 1...cardsPresent)
+            while (indices.contains(rand)) {
+                rand = Int.random(in: 1...cardsPresent)
+            }
+            indices.append(rand)
+        }
+    }
+    
+    @IBAction func handleTap(sender:UITapGestureRecognizer) {
+        current += 1
+        if (current == cards.count-1) {
+            navigationController?.popViewController(animated: true)
+        }
+        text.text = cards[current]
+    }
+    
     override var shouldAutorotate: Bool {
-        return true
+        return false
     }
     
     override func viewWillAppear(_ animated: Bool) {

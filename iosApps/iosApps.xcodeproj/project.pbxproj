@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		148A818B255AC6470066C9C6 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 148A818A255AC6470066C9C6 /* SwiftyJSON */; };
+		148BC2682560118600E90329 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148BC2672560118600E90329 /* GameModel.swift */; };
 		14A2E8092556F0400072F259 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E8082556F0400072F259 /* AppDelegate.swift */; };
 		14A2E80B2556F0400072F259 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E80A2556F0400072F259 /* SceneDelegate.swift */; };
 		14A2E80D2556F0400072F259 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E80C2556F0400072F259 /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		148BC2672560118600E90329 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		14A2E8052556F0400072F259 /* iosApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A2E8082556F0400072F259 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14A2E80A2556F0400072F259 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				14FDAE0C2559ABCE00AEBC87 /* cards.json */,
 				14A2E8132556F0430072F259 /* LaunchScreen.storyboard */,
 				14A2E8162556F0430072F259 /* Info.plist */,
+				148BC2672560118600E90329 /* GameModel.swift */,
 			);
 			path = iosApps;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				14FDADFB25595B0F00AEBC87 /* TypeGameController.swift in Sources */,
 				14A2E8092556F0400072F259 /* AppDelegate.swift in Sources */,
 				14A2E80B2556F0400072F259 /* SceneDelegate.swift in Sources */,
+				148BC2682560118600E90329 /* GameModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
