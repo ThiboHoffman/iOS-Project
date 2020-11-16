@@ -13,6 +13,7 @@ class TypeGameController: UIViewController {
     var stackView: UIStackView!
     var casualBtn: UIButton!
     var wildBtn: UIButton!
+    var onlineBtn: UIButton!
     var game: GameModel!
     
     override func viewDidLoad() {
@@ -52,6 +53,15 @@ class TypeGameController: UIViewController {
         wildBtn.addTarget(self, action: #selector(pushNavViewController), for: .touchUpInside)
         wildBtn.translatesAutoresizingMaskIntoConstraints = false
         
+        onlineBtn = UIButton()
+        onlineBtn.setTitle("Online", for: .normal)
+        onlineBtn.setTitleColor(.blue, for: .normal)
+        onlineBtn.layer.borderWidth = 1
+        onlineBtn.layer.borderColor = UIColor.black.cgColor
+        onlineBtn.layer.cornerRadius = 10
+        onlineBtn.clipsToBounds = true
+        onlineBtn.addTarget(self, action: #selector(pushOnlineViewController), for: .touchUpInside)
+        onlineBtn.translatesAutoresizingMaskIntoConstraints = false
         
         stackView = UIStackView()
         stackView.alignment = .center
@@ -60,6 +70,7 @@ class TypeGameController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(casualBtn)
         stackView.addArrangedSubview(wildBtn)
+        stackView.addArrangedSubview(onlineBtn)
         view.addSubview(stackView)
     }
     
@@ -76,6 +87,11 @@ class TypeGameController: UIViewController {
         let newViewController = GameViewController()
         game.type = sender.currentTitle!
         newViewController.game = game
+        navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    @objc func pushOnlineViewController(sender: UIButton) {
+        let newViewController = OnlineGameViewController()
         navigationController?.pushViewController(newViewController, animated: true)
     }
     
