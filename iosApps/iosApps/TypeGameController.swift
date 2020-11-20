@@ -33,40 +33,29 @@ class TypeGameController: UIViewController {
         
         view.backgroundColor = .white
         title = "Choose game type"
-        casualBtn = UIButton()
+        casualBtn = UIButton.choiceButton()
         casualBtn.setTitle("Casual", for: .normal)
-        casualBtn.setTitleColor(.blue, for: .normal)
-        casualBtn.layer.borderWidth = 1
-        casualBtn.layer.borderColor = UIColor.black.cgColor
-        casualBtn.layer.cornerRadius = 10
         casualBtn.clipsToBounds = true
         casualBtn.addTarget(self, action: #selector(pushNavViewController), for: .touchUpInside)
         casualBtn.translatesAutoresizingMaskIntoConstraints = false
         
-        wildBtn = UIButton()
+        wildBtn = UIButton.choiceButton()
         wildBtn.setTitle("Wild", for: .normal)
-        wildBtn.setTitleColor(.blue, for: .normal)
-        wildBtn.layer.borderWidth = 1
-        wildBtn.layer.borderColor = UIColor.black.cgColor
-        wildBtn.layer.cornerRadius = 10
         wildBtn.clipsToBounds = true
         wildBtn.addTarget(self, action: #selector(pushNavViewController), for: .touchUpInside)
         wildBtn.translatesAutoresizingMaskIntoConstraints = false
         
-        onlineBtn = UIButton()
+        onlineBtn = UIButton.choiceButton()
         onlineBtn.setTitle("Online", for: .normal)
-        onlineBtn.setTitleColor(.blue, for: .normal)
-        onlineBtn.layer.borderWidth = 1
-        onlineBtn.layer.borderColor = UIColor.black.cgColor
-        onlineBtn.layer.cornerRadius = 10
         onlineBtn.clipsToBounds = true
         onlineBtn.addTarget(self, action: #selector(pushOnlineViewController), for: .touchUpInside)
         onlineBtn.translatesAutoresizingMaskIntoConstraints = false
         
         stackView = UIStackView()
-        stackView.alignment = .center
+        stackView.alignment = .fill
         stackView.spacing = 8.0
         stackView.axis = .vertical
+        stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(casualBtn)
         stackView.addArrangedSubview(wildBtn)
@@ -76,11 +65,11 @@ class TypeGameController: UIViewController {
     
     func setUpContraints() {
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
         ])
-        
     }
     
     @objc func pushNavViewController(sender: UIButton) {

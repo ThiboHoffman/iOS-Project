@@ -23,6 +23,7 @@ class NetworkManager {
                 
                 if let cardData = try? jsonDecorder.decode(CardResponse.self, from: data) {
                     let cards = cardData.cards
+                    print(cards)
                     completion(cards)
                 }
                 print("nee")
