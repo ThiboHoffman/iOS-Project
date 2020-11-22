@@ -11,32 +11,53 @@ import SwiftyJSON
 
 class NetworkManager {
     
-    static let endpoint = "https://iosapiproject.azurewebsites.net/api/Card"
     
+    static let myCards = "https://iosapiproject.azurewebsites.net/api/Card/MyCards/"
+
     static func getCards(completion: @escaping ([CardOnline]) -> Void) {
+        let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card")!
+        let request = URLRequest(url: url)
+        var cards: [CardOnline] = []
         
-        AF.request(endpoint, method: HTTPMethod.get).validate().responseData { response in
-            switch response.result {
-            case .success(let data):
-                let jsonDecorder = JSONDecoder()
-                jsonDecorder.keyDecodingStrategy = .convertFromSnakeCase
-                
-                if let cardData = try? jsonDecorder.decode(CardResponse.self, from: data) {
-                    let cards = cardData.cards
-                    print(cards)
-                    completion(cards)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(CardResponse.self, from: data) {
+                    DispatchQueue.main.async {
+                        cards = decodedResponse.cards
+                        completion(cards)
+                    }
+                    return
                 }
-                print("nee")
-            case .failure(let error):
-                print(error.localizedDescription)
             }
-        }
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+        }.resume()
+    }
+    
+    static func getMyCards(id: Int, completion: @escaping ([CardOnline]) -> Void) {
+
+        let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card/MyCards/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        var cards: [CardOnline] = []
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(CardResponse.self, from: data) {
+                    DispatchQueue.main.async {
+                        cards = decodedResponse.cards
+                        completion(cards)
+                    }
+                    return
+                }
+            }
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+        }.resume()
     }
 }
 
 
 struct CardOnline: Codable {
-    var id: Int
+    var cardID: Int
     var gebruikerID: Int
     var text: String
     var likes: Int

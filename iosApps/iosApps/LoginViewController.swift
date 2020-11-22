@@ -85,7 +85,12 @@ class LoginViewController: UIViewController {
     }
     
     @objc func login() {
-        print("login")
+        NetworkManager.getMyCards(id: 1) { cards in
+            let newViewController = MyCardsViewController()
+            newViewController.myCards = cards
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
+
     }
     
     @IBAction func handleTap(sender:UITapGestureRecognizer) {

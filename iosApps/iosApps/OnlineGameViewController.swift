@@ -81,12 +81,7 @@ class OnlineGameViewController: UIViewController {
         reportBtn.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(reportBtn)
         
-        NetworkManager.getCards { cards in
-            self.cards = cards
-            print(cards)
-            self.showCard()
-        }
-            
+        showCard()
         view.addSubview(text)
         
     }

@@ -80,8 +80,12 @@ class TypeGameController: UIViewController {
     }
     
     @objc func pushOnlineViewController(sender: UIButton) {
-        let newViewController = OnlineGameViewController()
-        navigationController?.pushViewController(newViewController, animated: true)
+        NetworkManager.getCards() { cards in
+            print(cards)
+            let newViewController = OnlineGameViewController()
+            newViewController.cards = cards
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
     }
     
     override var shouldAutorotate: Bool {
