@@ -34,6 +34,8 @@ class MyCardsViewController: UIViewController {
         tableView.register(MyCardTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .done, target: self, action: #selector(addTapped))
+
     }
     
     func setUpConstraints() {
@@ -44,9 +46,12 @@ class MyCardsViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    @objc func addTapped() {
+        let newViewController = AddCardViewController()
+        navigationController?.pushViewController(newViewController, animated: true)
+    }
 }
-
-
 extension MyCardsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.myCards.count

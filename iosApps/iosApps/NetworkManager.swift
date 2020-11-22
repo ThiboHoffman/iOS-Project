@@ -53,6 +53,45 @@ class NetworkManager {
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
         }.resume()
     }
+    
+    static func makeCard(text: String, gebruikerID: Int, completion:  @escaping (CardOnline) -> Void) {
+        let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card/New")!
+        
+        let parameters: [String: Any] = [
+            "text": text,
+            "gebruikerID": gebruikerID
+        ]
+        
+        let session = URLSession.shared
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        var card: CardOnline!
+        
+        session.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(CardOnline.self, from: data) {
+                    DispatchQueue.main.async {
+                        card = decodedResponse
+                        print(card)
+                        completion(card)
+                    }
+                    return
+                }
+            }
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+        }.resume()
+    }
 }
 
 

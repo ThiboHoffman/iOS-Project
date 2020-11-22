@@ -24,6 +24,7 @@
 		14A2E8202556F0430072F259 /* iosAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E81F2556F0430072F259 /* iosAppsTests.swift */; };
 		14A2E82B2556F0430072F259 /* iosAppsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E82A2556F0430072F259 /* iosAppsUITests.swift */; };
 		14AF603A256AA43200D61082 /* MyCardPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6039256AA43200D61082 /* MyCardPreviewViewController.swift */; };
+		14AF603F256ABA0B00D61082 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF603E256ABA0B00D61082 /* AddCardViewController.swift */; };
 		14FDADF125594FD400AEBC87 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDADF025594FD400AEBC87 /* PlayerViewController.swift */; };
 		14FDADFB25595B0F00AEBC87 /* TypeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDADFA25595B0F00AEBC87 /* TypeGameController.swift */; };
 		14FDAE002559A9ED00AEBC87 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDADFF2559A9ED00AEBC87 /* GameViewController.swift */; };
@@ -75,6 +76,7 @@
 		14A2E82A2556F0430072F259 /* iosAppsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppsUITests.swift; sourceTree = "<group>"; };
 		14A2E82C2556F0430072F259 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14AF6039256AA43200D61082 /* MyCardPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardPreviewViewController.swift; sourceTree = "<group>"; };
+		14AF603E256ABA0B00D61082 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		14FDADF025594FD400AEBC87 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		14FDADFA25595B0F00AEBC87 /* TypeGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeGameController.swift; sourceTree = "<group>"; };
 		14FDADFF2559A9ED00AEBC87 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				14FDADFF2559A9ED00AEBC87 /* GameViewController.swift */,
 				1477C99C25699C6D006C7FD4 /* MyCardsTableViewController.swift */,
 				14AF6039256AA43200D61082 /* MyCardPreviewViewController.swift */,
+				14AF603E256ABA0B00D61082 /* AddCardViewController.swift */,
 				14FDADF025594FD400AEBC87 /* PlayerViewController.swift */,
 				148BC28F2562FE3F00E90329 /* OnlineGameViewController.swift */,
 				14A2E80E2556F0400072F259 /* Main.storyboard */,
@@ -465,6 +468,7 @@
 				148BC2682560118600E90329 /* GameModel.swift in Sources */,
 				1477C97E25681B8B006C7FD4 /* LoginViewController.swift in Sources */,
 				1477C98625681DE2006C7FD4 /* Style.swift in Sources */,
+				14AF603F256ABA0B00D61082 /* AddCardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
