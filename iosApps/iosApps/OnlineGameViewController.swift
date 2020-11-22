@@ -104,15 +104,6 @@ class OnlineGameViewController: UIViewController {
             reportBtn.heightAnchor.constraint(equalToConstant: 40),
             reportBtn.widthAnchor.constraint(equalToConstant: 40)
         ])
-        
-        /*
-        NSLayoutConstraint.activate([
-            likeBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            likeBtn.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            likeBtn.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
-            likeBtn.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2)
-        ])
-        */
     }
     
     @objc func showCard() {
@@ -120,18 +111,35 @@ class OnlineGameViewController: UIViewController {
     }
     
     @objc func like() {
-        print("like")
+        NetworkManager.likeCard(id: cards[current].cardID)
+        nextCard()
     }
     
     @objc func dislike() {
-        print("dislike")
+        NetworkManager.dislikeCard(id: cards[current].cardID)
+        nextCard()
     }
     
     @objc func report() {
-        print("reported")
+        let alert = UIAlertController(title: "Are you sure you cant to report this card?", message: "Only report cards when they break the rules", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            NetworkManager.reportCard(id: self.cards[self.current].cardID)
+            self.nextCard()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { action in
+            print("not reported")
+        }))
+
+        self.present(alert, animated: true)
     }
     
     @IBAction func handleTap(sender:UITapGestureRecognizer) {
+        nextCard()
+    }
+    
+    func nextCard() {
         current += 1
         if (current == cards.count-1) {
             navigationController?.popViewController(animated: true)
@@ -147,15 +155,4 @@ class OnlineGameViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

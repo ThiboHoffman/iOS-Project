@@ -54,6 +54,33 @@ class NetworkManager {
         }.resume()
     }
     
+    static func likeCard(id: Int) {
+        let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card/Like/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+        }.resume()
+    }
+    
+    static func dislikeCard(id: Int) {
+        let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card/Dislike/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+        }.resume()
+    }
+    
+    static func reportCard(id: Int) {
+        let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card/Report/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+        }.resume()
+    }
+    
     static func makeCard(text: String, gebruikerID: Int, completion:  @escaping (CardOnline) -> Void) {
         let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card/New")!
         
