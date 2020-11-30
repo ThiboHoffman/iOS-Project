@@ -27,7 +27,7 @@ class AddCardViewController: UIViewController {
         
         info = UILabel()
         info.textColor = UIColor.text()
-        info.text = "Names can be inserted by using {$name}"
+        info.text = "Names can be inserted by using (name)"
         info.textAlignment = .center
         info.numberOfLines = 2
         info.font = UIFont.systemFont(ofSize: 18, weight: .bold)

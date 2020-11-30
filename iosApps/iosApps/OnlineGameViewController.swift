@@ -10,6 +10,7 @@ import UIKit
 class OnlineGameViewController: UIViewController {
 
     var cards: [CardOnline]!
+    var game: GameModel!
     var text: UILabel!
     var buttonStack: UIStackView!
     var likeBtn: UIButton!
@@ -81,9 +82,8 @@ class OnlineGameViewController: UIViewController {
         reportBtn.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(reportBtn)
         
-        showCard()
+        self.showCard()
         view.addSubview(text)
-        
     }
     
     func setUpConstraints() {
@@ -107,7 +107,8 @@ class OnlineGameViewController: UIViewController {
     }
     
     @objc func showCard() {
-        text.text = cards[current].text
+        let textString = cards[current].text.replacingOccurrences(of: "(name)", with: String(game.players[Int.random(in: 0...(game.players.count-1))]))
+        text.text = textString
     }
     
     @objc func like() {
@@ -142,9 +143,17 @@ class OnlineGameViewController: UIViewController {
     func nextCard() {
         current += 1
         if (current == cards.count-1) {
-            navigationController?.popViewController(animated: true)
+            endGame()
         }
         showCard()
+    }
+    
+    func endGame() {
+        if let navController = self.navigationController, navController.viewControllers.count >= 2 {
+            let viewController: OnlineSearchViewController = navController.viewControllers[navController.viewControllers.count - 2] as! OnlineSearchViewController
+            viewController.viewDidLoad()
+        }
+        navigationController?.popViewController(animated: true)
     }
     
     override var shouldAutorotate: Bool {

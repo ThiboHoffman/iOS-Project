@@ -80,12 +80,9 @@ class TypeGameController: UIViewController {
     }
     
     @objc func pushOnlineViewController(sender: UIButton) {
-        NetworkManager.getCards() { cards in
-            print(cards)
-            let newViewController = OnlineGameViewController()
-            newViewController.cards = cards
-            self.navigationController?.pushViewController(newViewController, animated: true)
-        }
+        let newViewController = OnlineSearchViewController()
+        newViewController.game = self.game
+        self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
     override var shouldAutorotate: Bool {
@@ -96,15 +93,4 @@ class TypeGameController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

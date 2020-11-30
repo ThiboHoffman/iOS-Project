@@ -97,9 +97,17 @@ class GameViewController: UIViewController {
     @IBAction func handleTap(sender:UITapGestureRecognizer) {
         current += 1
         if (current == cards.count-1) {
-            navigationController?.popViewController(animated: true)
+            endGame()
         }
         showCard()
+    }
+    
+    func endGame() {
+        if let navController = self.navigationController, navController.viewControllers.count >= 2 {
+            let viewController: TypeGameController = navController.viewControllers[navController.viewControllers.count - 2] as! TypeGameController
+            viewController.viewDidLoad()
+        }
+        navigationController?.popViewController(animated: true)
     }
     
     override var shouldAutorotate: Bool {
@@ -110,15 +118,4 @@ class GameViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

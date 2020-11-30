@@ -24,7 +24,7 @@ class MyCardPreviewViewController: UIViewController {
     func setUpView() {
         
         textLabel = UILabel()
-        textLabel.text = card.text
+        textLabel.text = card.text.replacingOccurrences(of: "(name)", with: "Bill Gates")
         textLabel.textColor = UIColor.text()
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(textLabel)

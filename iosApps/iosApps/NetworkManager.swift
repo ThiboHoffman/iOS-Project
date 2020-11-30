@@ -6,16 +6,12 @@
 //
 
 import Foundation
-import Alamofire
 import SwiftyJSON
 
 class NetworkManager {
     
-    
-    static let myCards = "https://iosapiproject.azurewebsites.net/api/Card/MyCards/"
-
-    static func getCards(completion: @escaping ([CardOnline]) -> Void) {
-        let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card")!
+    static func getCards(min: Int, max: Int, completion: @escaping ([CardOnline]) -> Void) {
+        let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Card/Game/\(min)/\(max)")!
         let request = URLRequest(url: url)
         var cards: [CardOnline] = []
         
@@ -24,6 +20,7 @@ class NetworkManager {
                 if let decodedResponse = try? JSONDecoder().decode(CardResponse.self, from: data) {
                     DispatchQueue.main.async {
                         cards = decodedResponse.cards
+                        print(cards)
                         completion(cards)
                     }
                     return
@@ -35,7 +32,7 @@ class NetworkManager {
     
     static func getMyCards(id: Int, completion: @escaping ([CardOnline]) -> Void) {
 
-        let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card/MyCards/\(id)")!
+        let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Card/MyCards/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         var cards: [CardOnline] = []
@@ -45,6 +42,7 @@ class NetworkManager {
                 if let decodedResponse = try? JSONDecoder().decode(CardResponse.self, from: data) {
                     DispatchQueue.main.async {
                         cards = decodedResponse.cards
+                        print(cards)
                         completion(cards)
                     }
                     return
@@ -55,7 +53,7 @@ class NetworkManager {
     }
     
     static func likeCard(id: Int) {
-        let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card/Like/\(id)")!
+        let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Card/Like/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
@@ -64,7 +62,7 @@ class NetworkManager {
     }
     
     static func dislikeCard(id: Int) {
-        let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card/Dislike/\(id)")!
+        let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Card/Dislike/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
@@ -73,7 +71,7 @@ class NetworkManager {
     }
     
     static func reportCard(id: Int) {
-        let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card/Report/\(id)")!
+        let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Card/Report/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
@@ -82,7 +80,7 @@ class NetworkManager {
     }
     
     static func makeCard(text: String, gebruikerID: Int, completion:  @escaping (CardOnline) -> Void) {
-        let url = URL(string: "https://iosapiproject.azurewebsites.net/api/Card/New")!
+        let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Card/New")!
         
         let parameters: [String: Any] = [
             "text": text,
@@ -110,7 +108,6 @@ class NetworkManager {
                 if let decodedResponse = try? JSONDecoder().decode(CardOnline.self, from: data) {
                     DispatchQueue.main.async {
                         card = decodedResponse
-                        print(card)
                         completion(card)
                     }
                     return
@@ -129,6 +126,7 @@ struct CardOnline: Codable {
     var likes: Int
     var dislikes: Int
     var reports : Int
+    var likePercentage: Double
 }
 
 struct CardResponse: Codable {
