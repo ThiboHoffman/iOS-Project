@@ -28,6 +28,11 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.accent()]
         navigationController?.navigationBar.tintColor = UIColor.accent()
         
+        let defaults = UserDefaults.standard
+        if let token = defaults.object(forKey: "token") as? String {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutTapped))
+        }
+        
         welkomLabel = UILabel()
         welkomLabel.text = "Welkom!"
         welkomLabel.textColor = UIColor.text()
@@ -92,8 +97,37 @@ class ViewController: UIViewController {
     }
     
     @objc func login() {
-        let newViewController = LoginViewController()
-        navigationController?.pushViewController(newViewController, animated: true)
+        let defaults = UserDefaults.standard
+
+        if let token = defaults.object(forKey: "token") as? String {
+            NetworkManager.getMyCards() { cards in
+                let newViewController = MyCardsViewController()
+                newViewController.myCards = cards
+                self.removeSpinner()
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(self.logoutTapped))
+                self.navigationController?.pushViewController(newViewController, animated: true)
+            }
+        } else {
+            let newViewController = LoginViewController()
+            navigationController?.pushViewController(newViewController, animated: true)
+        }
+    }
+    
+    @objc func logoutTapped() {
+        let alert = UIAlertController(title: "Are you sure you want to log out?", message: "", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            let defaults = UserDefaults.standard
+            defaults.removeObject(forKey: "token")
+            defaults.removeObject(forKey: "gebruikerID")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", style: .done, target: self, action: #selector(self.logoutTapped))
+        }))
+        
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { action in
+            print("cancelled")
+        }))
+
+        self.present(alert, animated: true)
     }
     
     @objc func pushNavViewController() {

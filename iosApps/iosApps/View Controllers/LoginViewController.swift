@@ -10,10 +10,12 @@ import UIKit
 class LoginViewController: UIViewController {
 
     var stackView: UIStackView!
-    var usernameTF: UITextField!
+    var emailTF: UITextField!
     var passwordTF: UITextField!
     var loginBtn: UIButton!
     var regisreerLabel: UILabel!
+    
+    var errorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +28,13 @@ class LoginViewController: UIViewController {
         
         view.backgroundColor = UIColor.background()
         
-        usernameTF = UITextField()
-        usernameTF.placeholder = "Username"
-        usernameTF.textColor = UIColor.accent()
+        emailTF = UITextField()
+        emailTF.placeholder = "Email"
+        emailTF.textColor = UIColor.accent()
 
         passwordTF = UITextField()
         passwordTF.placeholder = "Password"
+        passwordTF.isSecureTextEntry = true
         passwordTF.textColor = UIColor.accent()
 
         
@@ -42,6 +45,15 @@ class LoginViewController: UIViewController {
         loginBtn.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loginBtn)
 
+        errorLabel = UILabel(frame: CGRect(x:0, y:0, width:200, height:21))
+        errorLabel.text = "Entered credentials incorrent. Try again."
+        errorLabel.textColor = UIColor.text()
+        errorLabel.textAlignment = .center
+        errorLabel.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        errorLabel.isHidden = true
+        view.addSubview(errorLabel)
+        
         regisreerLabel = UILabel(frame: CGRect(x:0, y:0, width:200, height:21))
         regisreerLabel.text = "Sign up here"
         regisreerLabel.textColor = UIColor.text()
@@ -57,7 +69,7 @@ class LoginViewController: UIViewController {
         stackView.alignment = .center
         stackView.spacing = 30.0
         stackView.axis = .vertical
-        stackView.addArrangedSubview(usernameTF)
+        stackView.addArrangedSubview(emailTF)
         stackView.addArrangedSubview(passwordTF)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
@@ -68,6 +80,12 @@ class LoginViewController: UIViewController {
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
+        ])
+        
+        NSLayoutConstraint.activate([
+            errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorLabel.widthAnchor.constraint(equalTo: loginBtn.widthAnchor),
+            errorLabel.bottomAnchor.constraint(equalTo: loginBtn.topAnchor, constant: -10)
         ])
         
         NSLayoutConstraint.activate([
@@ -84,17 +102,34 @@ class LoginViewController: UIViewController {
         ])
     }
     
-    @objc func login() {
-        NetworkManager.getMyCards(id: 1) { cards in
-            let newViewController = MyCardsViewController()
-            newViewController.myCards = cards
-            self.navigationController?.pushViewController(newViewController, animated: true)
-        }
+    @objc fileprivate func login() {
+        
+        self.showSpinner(onView: self.view)
 
+        NetworkManager.login(email: emailTF.text!, password: passwordTF.text!) { loginmodel in
+                print("ingelogd")
+                self.showSpinner(onView: self.view)
+
+                NetworkManager.getMyCards() { cards in
+                    let newViewController = MyCardsViewController()
+                    newViewController.myCards = cards
+                    self.removeSpinner()
+                    self.navigationController?.pushViewController(newViewController, animated: true)
+                }
+                return
+        }
+        /*
+        print("mislukt")
+        let defaults = UserDefaults.standard
+        self.errorLabel.isHidden = false
+        */
+        self.removeSpinner()
+        
     }
     
     @IBAction func handleTap(sender:UITapGestureRecognizer) {
-        print("register")
+        let newViewController = RegisterViewController()
+        self.navigationController?.pushViewController(newViewController, animated: true)
     }
 
     /*

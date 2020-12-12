@@ -74,7 +74,7 @@ class AddCardViewController: UIViewController {
     }
     
     @objc func createCard() {
-        NetworkManager.makeCard(text: textField.text, gebruikerID: 1) { card in
+        NetworkManager.makeCard(text: textField.text) { card in
             if let navController = self.navigationController, navController.viewControllers.count >= 2 {
                 let viewController: MyCardsViewController = navController.viewControllers[navController.viewControllers.count - 2] as! MyCardsViewController
                 viewController.myCards.append(card)

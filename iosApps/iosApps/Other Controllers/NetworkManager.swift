@@ -10,6 +10,94 @@ import SwiftyJSON
 
 class NetworkManager {
     
+    static func login(email: String, password: String, completion: @escaping (LoginModel) -> Void) {
+        
+        guard let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Account/") else { return }
+        
+        let parameters: [String: Any] = [
+            "email": email,
+            "password": password
+        ]
+        
+        let session = URLSession.shared
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+        var loginmodel: LoginModel!
+        
+        session.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(LoginModel.self, from: data) {
+                    DispatchQueue.main.async {
+                        print(decodedResponse)
+                        loginmodel = decodedResponse
+                        let defaults = UserDefaults.standard
+                        defaults.set(loginmodel.token, forKey: "token")
+                        defaults.set(loginmodel.gebruikerID, forKey: "gebruikerID")
+                        completion(loginmodel)
+                    }
+                    return
+                }
+            }
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+            return
+        }.resume()
+    }
+    
+    static func registreer(username: String, email: String, password: String, passwordConfirmation: String, completion: @escaping (LoginModel) -> Void) {
+        
+        guard let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Account/Register") else { return }
+        
+        let parameters: [String: Any] = [
+            "email": email,
+            "password": password,
+            "passwordConfirmation": passwordConfirmation,
+            "username": username
+        ]
+        
+        let session = URLSession.shared
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+        var loginmodel: LoginModel!
+        
+        session.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(LoginModel.self, from: data) {
+                    DispatchQueue.main.async {
+                        print(decodedResponse)
+                        loginmodel = decodedResponse
+                        let defaults = UserDefaults.standard
+                        defaults.set(loginmodel.token, forKey: "token")
+                        defaults.set(loginmodel.gebruikerID, forKey: "gebruikerID")
+                        completion(loginmodel)
+                    }
+                    return
+                }
+            }
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+        }.resume()
+    }
     static func getCards(min: Int, max: Int, completion: @escaping ([CardOnline]) -> Void) {
         let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Card/Game/\(min)/\(max)")!
         let request = URLRequest(url: url)
@@ -30,8 +118,11 @@ class NetworkManager {
         }.resume()
     }
     
-    static func getMyCards(id: Int, completion: @escaping ([CardOnline]) -> Void) {
-
+    static func getMyCards(completion: @escaping ([CardOnline]) -> Void) {
+        
+        let defaults = UserDefaults.standard
+        let id = defaults.integer(forKey: "gebruikerID")
+        
         let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Card/MyCards/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -79,12 +170,14 @@ class NetworkManager {
         }.resume()
     }
     
-    static func makeCard(text: String, gebruikerID: Int, completion:  @escaping (CardOnline) -> Void) {
+    static func makeCard(text: String, completion:  @escaping (CardOnline) -> Void) {
         let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Card/New")!
         
+        let defaults = UserDefaults.standard
+
         let parameters: [String: Any] = [
             "text": text,
-            "gebruikerID": gebruikerID
+            "gebruikerID": defaults.integer(forKey: "gebruikerID")
         ]
         
         let session = URLSession.shared
@@ -116,6 +209,11 @@ class NetworkManager {
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
         }.resume()
     }
+}
+
+struct LoginModel: Codable {
+    var token: String
+    var gebruikerID: Int
 }
 
 

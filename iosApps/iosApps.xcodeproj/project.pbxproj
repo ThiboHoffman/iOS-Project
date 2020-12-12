@@ -11,10 +11,11 @@
 		1477C98625681DE2006C7FD4 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477C98525681DE2006C7FD4 /* Style.swift */; };
 		1477C99525699BB3006C7FD4 /* MyCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477C99425699BB3006C7FD4 /* MyCardTableViewCell.swift */; };
 		1477C99D25699C6D006C7FD4 /* MyCardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477C99C25699C6D006C7FD4 /* MyCardsTableViewController.swift */; };
-		148A818B255AC6470066C9C6 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 148A818A255AC6470066C9C6 /* SwiftPackageProductDependency */; };
+		148A818B255AC6470066C9C6 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 148A818A255AC6470066C9C6 /* SwiftyJSON */; };
 		148BC2682560118600E90329 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148BC2672560118600E90329 /* GameModel.swift */; };
 		148BC2792561BE2000E90329 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148BC2782561BE1F00E90329 /* NetworkManager.swift */; };
 		148BC2902562FE3F00E90329 /* OnlineGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148BC28F2562FE3F00E90329 /* OnlineGameViewController.swift */; };
+		14980DFC25850B3E00BD3124 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14980DFB25850B3E00BD3124 /* RegisterViewController.swift */; };
 		14A2E8092556F0400072F259 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E8082556F0400072F259 /* AppDelegate.swift */; };
 		14A2E80B2556F0400072F259 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E80A2556F0400072F259 /* SceneDelegate.swift */; };
 		14A2E80D2556F0400072F259 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E80C2556F0400072F259 /* ViewController.swift */; };
@@ -61,6 +62,7 @@
 		148BC2672560118600E90329 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		148BC2782561BE1F00E90329 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		148BC28F2562FE3F00E90329 /* OnlineGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineGameViewController.swift; sourceTree = "<group>"; };
+		14980DFB25850B3E00BD3124 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		14A2E8052556F0400072F259 /* iosApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A2E8082556F0400072F259 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14A2E80A2556F0400072F259 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,7 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				148A818B255AC6470066C9C6 /* BuildFile in Frameworks */,
+				148A818B255AC6470066C9C6 /* SwiftyJSON in Frameworks */,
 				57D24BC0806F92C1FBB741DC /* Pods_iosApps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +123,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14980DF12584CFB300BD3124 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				14A2E80A2556F0400072F259 /* SceneDelegate.swift */,
+				14A2E80C2556F0400072F259 /* ViewController.swift */,
+				14980DFB25850B3E00BD3124 /* RegisterViewController.swift */,
+				1477C97D25681B8B006C7FD4 /* LoginViewController.swift */,
+				14FDADFA25595B0F00AEBC87 /* TypeGameController.swift */,
+				14FDADFF2559A9ED00AEBC87 /* GameViewController.swift */,
+				1477C99C25699C6D006C7FD4 /* MyCardsTableViewController.swift */,
+				14AF6039256AA43200D61082 /* MyCardPreviewViewController.swift */,
+				14AF603E256ABA0B00D61082 /* AddCardViewController.swift */,
+				14FDADF025594FD400AEBC87 /* PlayerViewController.swift */,
+				14AF6043256AF0E000D61082 /* OnlineSearchViewController.swift */,
+				148BC28F2562FE3F00E90329 /* OnlineGameViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		14980DF22584CFC100BD3124 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				148BC2672560118600E90329 /* GameModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14980DF32584CFC700BD3124 /* Other Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				148BC2782561BE1F00E90329 /* NetworkManager.swift */,
+			);
+			path = "Other Controllers";
+			sourceTree = "<group>";
+		};
+		14980DF52584D00D00BD3124 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1477C99425699BB3006C7FD4 /* MyCardTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		14980DF72584D03300BD3124 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1477C98525681DE2006C7FD4 /* Style.swift */,
+				14FDAE0C2559ABCE00AEBC87 /* cards.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		14A2E7FC2556F0400072F259 = {
 			isa = PBXGroup;
 			children = (
@@ -147,26 +201,15 @@
 			isa = PBXGroup;
 			children = (
 				14A2E8082556F0400072F259 /* AppDelegate.swift */,
-				14A2E80A2556F0400072F259 /* SceneDelegate.swift */,
-				14A2E80C2556F0400072F259 /* ViewController.swift */,
-				1477C98525681DE2006C7FD4 /* Style.swift */,
-				1477C97D25681B8B006C7FD4 /* LoginViewController.swift */,
-				14FDADFA25595B0F00AEBC87 /* TypeGameController.swift */,
-				14FDADFF2559A9ED00AEBC87 /* GameViewController.swift */,
-				1477C99C25699C6D006C7FD4 /* MyCardsTableViewController.swift */,
-				14AF6039256AA43200D61082 /* MyCardPreviewViewController.swift */,
-				14AF603E256ABA0B00D61082 /* AddCardViewController.swift */,
-				14FDADF025594FD400AEBC87 /* PlayerViewController.swift */,
-				14AF6043256AF0E000D61082 /* OnlineSearchViewController.swift */,
-				148BC28F2562FE3F00E90329 /* OnlineGameViewController.swift */,
+				14980DF72584D03300BD3124 /* Resources */,
+				14980DF52584D00D00BD3124 /* Views */,
+				14980DF32584CFC700BD3124 /* Other Controllers */,
+				14980DF22584CFC100BD3124 /* Model */,
+				14980DF12584CFB300BD3124 /* View Controllers */,
 				14A2E80E2556F0400072F259 /* Main.storyboard */,
 				14A2E8112556F0430072F259 /* Assets.xcassets */,
-				14FDAE0C2559ABCE00AEBC87 /* cards.json */,
 				14A2E8132556F0430072F259 /* LaunchScreen.storyboard */,
 				14A2E8162556F0430072F259 /* Info.plist */,
-				1477C99425699BB3006C7FD4 /* MyCardTableViewCell.swift */,
-				148BC2672560118600E90329 /* GameModel.swift */,
-				148BC2782561BE1F00E90329 /* NetworkManager.swift */,
 			);
 			path = iosApps;
 			sourceTree = "<group>";
@@ -231,7 +274,7 @@
 			);
 			name = iosApps;
 			packageProductDependencies = (
-				148A818A255AC6470066C9C6 /* SwiftPackageProductDependency */,
+				148A818A255AC6470066C9C6 /* SwiftyJSON */,
 			);
 			productName = iosApps;
 			productReference = 14A2E8052556F0400072F259 /* iosApps.app */;
@@ -308,7 +351,7 @@
 			);
 			mainGroup = 14A2E7FC2556F0400072F259;
 			packageReferences = (
-				148A8189255AC6470066C9C6 /* RemoteSwiftPackageReference */,
+				148A8189255AC6470066C9C6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 14A2E8062556F0400072F259 /* Products */;
 			projectDirPath = "";
@@ -470,6 +513,7 @@
 				14AF6044256AF0E000D61082 /* OnlineSearchViewController.swift in Sources */,
 				1477C99525699BB3006C7FD4 /* MyCardTableViewCell.swift in Sources */,
 				148BC2682560118600E90329 /* GameModel.swift in Sources */,
+				14980DFC25850B3E00BD3124 /* RegisterViewController.swift in Sources */,
 				1477C97E25681B8B006C7FD4 /* LoginViewController.swift in Sources */,
 				1477C98625681DE2006C7FD4 /* Style.swift in Sources */,
 				14AF603F256ABA0B00D61082 /* AddCardViewController.swift in Sources */,
@@ -807,7 +851,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		148A8189255AC6470066C9C6 /* RemoteSwiftPackageReference */ = {
+		148A8189255AC6470066C9C6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
 			requirement = {
@@ -818,9 +862,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		148A818A255AC6470066C9C6 /* SwiftPackageProductDependency */ = {
+		148A818A255AC6470066C9C6 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 148A8189255AC6470066C9C6 /* RemoteSwiftPackageReference */;
+			package = 148A8189255AC6470066C9C6 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
