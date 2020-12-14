@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var welkomLabel: UILabel!
+    //var welkomLabel: UILabel!
     var imageView: UIImageView!
     var playButton: UIButton!
     var loginButton: UIButton!
@@ -25,14 +25,14 @@ class ViewController: UIViewController {
      
         view.backgroundColor = UIColor.background()
         navigationController?.navigationBar.barTintColor = UIColor.accentBackground()
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.accent()]
-        navigationController?.navigationBar.tintColor = UIColor.accent()
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.text()]
+        navigationController?.navigationBar.tintColor = UIColor.text()
         
         let defaults = UserDefaults.standard
         if let token = defaults.object(forKey: "token") as? String {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutTapped))
         }
-        
+        /*
         welkomLabel = UILabel()
         welkomLabel.text = "Welkom!"
         welkomLabel.textColor = UIColor.text()
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         welkomLabel.font = UIFont.systemFont(ofSize: 36, weight: .bold)
         welkomLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(welkomLabel)
-        
+        */
         imageView = UIImageView()
         imageView.image = UIImage(named: "bierImage")
         imageView.contentMode = .scaleAspectFit
@@ -51,8 +51,8 @@ class ViewController: UIViewController {
         loginButton = UIButton()
         loginButton.setImage(UIImage(named: "profileIcon"), for: .normal)
         loginButton.layer.borderWidth = 3
-        loginButton.layer.borderColor = CGColor.accentBackground()
-        loginButton.backgroundColor = UIColor.background()
+        loginButton.layer.borderColor = CGColor.accent()
+        loginButton.backgroundColor = UIColor.accentBackground()
         loginButton.layer.cornerRadius = 25
         loginButton.clipsToBounds = true
         loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
@@ -60,19 +60,19 @@ class ViewController: UIViewController {
         view.addSubview(loginButton)
         
         playButton = UIButton.choiceButton()
-        playButton.setTitle("Play!", for: .normal)
+        playButton.setTitle("Play", for: .normal)
         playButton.addTarget(self, action: #selector(pushNavViewController), for: .touchUpInside)
         playButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(playButton)
     }
     
     func setupConstraints() {
-        
+        /*
         NSLayoutConstraint.activate([
             welkomLabel.bottomAnchor.constraint(equalTo: imageView.topAnchor, constant: -20),
             welkomLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
-        
+        */
         NSLayoutConstraint.activate([
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),

@@ -17,6 +17,10 @@ class MyCardTableViewCell: UITableViewCell {
     var reportsImageView: UIImageView!
     var reportsLabel: UILabel!
     var stackView: UIStackView!
+    var likesSV: UIStackView!
+    var dislikesSV: UIStackView!
+    var reportsSV: UIStackView!
+
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
@@ -28,49 +32,69 @@ class MyCardTableViewCell: UITableViewCell {
         previewLabel.translatesAutoresizingMaskIntoConstraints = false
         previewLabel.font = .systemFont(ofSize: 14)
         previewLabel.textAlignment = .center
+        previewLabel.textColor = UIColor.text()
         contentView.addSubview(previewLabel)
         
         likesImageView = UIImageView()
-        likesImageView.image = UIImage(named: "likeIcon")
+        likesImageView.image = UIImage(named: "likeIconDark")
         likesImageView.contentMode = .scaleAspectFit
         likesImageView.clipsToBounds = true
         likesImageView.translatesAutoresizingMaskIntoConstraints = false
         
         dislikesImageView = UIImageView()
-        dislikesImageView.image = UIImage(named: "dislikeIcon")
+        dislikesImageView.image = UIImage(named: "dislikeIconDark")
         dislikesImageView.contentMode = .scaleAspectFit
         dislikesImageView.clipsToBounds = true
         dislikesImageView.translatesAutoresizingMaskIntoConstraints = false
         
         reportsImageView = UIImageView()
-        reportsImageView.image = UIImage(named: "reportIcon")
+        reportsImageView.image = UIImage(named: "reportIconDark")
         reportsImageView.contentMode = .scaleAspectFit
         reportsImageView.clipsToBounds = true
         reportsImageView.translatesAutoresizingMaskIntoConstraints = false
         
         likesLabel = UILabel()
-        previewLabel.translatesAutoresizingMaskIntoConstraints = false
-        previewLabel.font = .systemFont(ofSize: 12)
+        likesLabel.translatesAutoresizingMaskIntoConstraints = false
+        likesLabel.font = .systemFont(ofSize: 15)
+        likesLabel.textColor = UIColor.text()
         
         dislikesLabel = UILabel()
-        previewLabel.translatesAutoresizingMaskIntoConstraints = false
-        previewLabel.font = .systemFont(ofSize: 12)
-        
+        dislikesLabel.translatesAutoresizingMaskIntoConstraints = false
+        dislikesLabel.font = .systemFont(ofSize: 15)
+        dislikesLabel.textColor = UIColor.text()
+            
         reportsLabel = UILabel()
-        previewLabel.translatesAutoresizingMaskIntoConstraints = false
-        previewLabel.font = .systemFont(ofSize: 12)
+        reportsLabel.translatesAutoresizingMaskIntoConstraints = false
+        reportsLabel.font = .systemFont(ofSize: 15)
+        dislikesLabel.textColor = UIColor.text()
+        
+        likesSV = UIStackView()
+        likesSV.translatesAutoresizingMaskIntoConstraints = false
+        likesSV.axis = .horizontal
+        likesSV.alignment = .fill
+        likesSV.addArrangedSubview(likesLabel)
+        likesSV.addArrangedSubview(likesImageView)
+        dislikesSV = UIStackView()
+        dislikesSV.translatesAutoresizingMaskIntoConstraints = false
+        dislikesSV.axis = .horizontal
+        dislikesSV.alignment = .fill
+        dislikesSV.addArrangedSubview(dislikesLabel)
+        dislikesSV.addArrangedSubview(dislikesImageView)
+        reportsSV = UIStackView()
+        reportsSV.translatesAutoresizingMaskIntoConstraints = false
+        reportsSV.axis = .horizontal
+        reportsSV.alignment = .fill
+        reportsSV.addArrangedSubview(reportsLabel)
+        reportsSV.addArrangedSubview(reportsImageView)
         
         stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        stackView.addArrangedSubview(likesLabel)
-        stackView.addArrangedSubview(likesImageView)
-        stackView.addArrangedSubview(dislikesLabel)
-        stackView.addArrangedSubview(dislikesImageView)
-        stackView.addArrangedSubview(reportsLabel)
-        stackView.addArrangedSubview(reportsImageView)
+        stackView.distribution = .equalSpacing
+        stackView.addArrangedSubview(likesSV)
+        stackView.addArrangedSubview(dislikesSV)
+        stackView.addArrangedSubview(reportsSV)
         contentView.addSubview(stackView)
         
         setUpConstraints()
@@ -84,13 +108,20 @@ class MyCardTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             previewLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             previewLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.95),
-            previewLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45)
+            previewLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3)
         ])
         
         NSLayoutConstraint.activate([
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            stackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.95),
-            stackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45)
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.70),
+            stackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.60),
+            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            likesSV.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.3),
+            dislikesSV.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.3),
+            reportsSV.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.3)
         ])
     }
     

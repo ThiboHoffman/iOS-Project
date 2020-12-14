@@ -73,7 +73,7 @@ class OnlineSearchViewController: UIViewController {
     func setUpConstraints() {
         NSLayoutConstraint.activate([
             minLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            minLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50)
+            minLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200)
         ])
         NSLayoutConstraint.activate([
             segmentMin.centerXAnchor.constraint(equalTo: view.centerXAnchor),

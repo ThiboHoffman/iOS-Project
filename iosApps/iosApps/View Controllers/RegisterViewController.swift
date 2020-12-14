@@ -16,6 +16,7 @@ class RegisterViewController: UIViewController {
     var passwordConfTF: UITextField!
     var registreerBtn: UIButton!
     var loginLabel: UILabel!
+    var errorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,26 +28,30 @@ class RegisterViewController: UIViewController {
     func setUpView() {
         
         view.backgroundColor = UIColor.background()
+        title = "Register"
         
         usernameTF = UITextField()
         usernameTF.placeholder = "Username"
-        usernameTF.textColor = UIColor.accent()
+        usernameTF.textContentType = .oneTimeCode
+        usernameTF.textColor = UIColor.text()
         
         emailTF = UITextField()
         emailTF.placeholder = "Email"
-        emailTF.textColor = UIColor.accent()
+        emailTF.textContentType = .oneTimeCode
+        emailTF.textColor = UIColor.text()
 
         passwordTF = UITextField()
         passwordTF.placeholder = "Password"
         passwordTF.isSecureTextEntry = true
         passwordTF.textContentType = .oneTimeCode
-        passwordTF.textColor = UIColor.accent()
+        passwordTF.textColor = UIColor.text()
 
         passwordConfTF = UITextField()
         passwordConfTF.placeholder = "Password Confirmation"
         passwordConfTF.isSecureTextEntry = true
         passwordConfTF.textContentType = .oneTimeCode
-        passwordConfTF.textColor = UIColor.accent()
+        passwordConfTF.textAlignment = .center
+        passwordConfTF.textColor = UIColor.text()
         
         registreerBtn = UIButton.choiceButton()
         registreerBtn.setTitle("Registreer", for: .normal)
@@ -76,6 +81,15 @@ class RegisterViewController: UIViewController {
         stackView.addArrangedSubview(passwordConfTF)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
+        
+        errorLabel = UILabel(frame: CGRect(x:0, y:0, width:200, height:21))
+        errorLabel.text = "Entered credentials incorrent. Try again."
+        errorLabel.textColor = UIColor.text()
+        errorLabel.textAlignment = .center
+        errorLabel.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        errorLabel.isHidden = true
+        view.addSubview(errorLabel)
     }
     
     func setUpConstraints() {
@@ -86,16 +100,22 @@ class RegisterViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
+            errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorLabel.widthAnchor.constraint(equalTo: registreerBtn.widthAnchor),
+            errorLabel.bottomAnchor.constraint(equalTo: registreerBtn.topAnchor, constant: -20)
+        ])
+        
+        NSLayoutConstraint.activate([
             registreerBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             registreerBtn.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1),
             registreerBtn.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            registreerBtn.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 50)
+            registreerBtn.bottomAnchor.constraint(equalTo: loginLabel.topAnchor, constant: -20)
         ])
         
         NSLayoutConstraint.activate([
             loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginLabel.widthAnchor.constraint(equalTo: registreerBtn.widthAnchor),
-            loginLabel.topAnchor.constraint(equalTo: registreerBtn.bottomAnchor, constant: 10)
+            loginLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
     
@@ -103,7 +123,10 @@ class RegisterViewController: UIViewController {
         
         self.showSpinner(onView: self.view)
 
-        do {
+        if (usernameTF.text == "" || emailTF.text == "" || passwordTF.text == "" || passwordConfTF.text == "") {
+            self.removeSpinner()
+            errorLabel.isHidden = false
+        } else {
             NetworkManager.registreer(username: usernameTF.text!, email: emailTF.text!, password: passwordTF.text!, passwordConfirmation: passwordConfTF.text!) { loginmodel in
                 print("ingelogd")
                 NetworkManager.getMyCards() { cards in
@@ -113,14 +136,11 @@ class RegisterViewController: UIViewController {
                     self.navigationController?.pushViewController(newViewController, animated: true)
                 }
             }
-        } catch {
-            print("fout")
         }
     }
     
     @IBAction func handleTap(sender:UITapGestureRecognizer) {
-        let newViewController = LoginViewController()
-        self.navigationController?.pushViewController(newViewController, animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
 
 }

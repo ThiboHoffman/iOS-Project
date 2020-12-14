@@ -30,10 +30,10 @@ class PlayerViewController: UIViewController {
 
         let playerFieldOne: UITextField = UITextField()
         playerFieldOne.placeholder = "Player 1"
-        playerFieldOne.textColor = UIColor.accent()
+        playerFieldOne.textColor = UIColor.text()
         let playerFieldTwo: UITextField = UITextField()
         playerFieldTwo.placeholder = "Player 2"
-        playerFieldTwo.textColor = UIColor.accent()
+        playerFieldTwo.textColor = UIColor.text()
         playerFields.append(playerFieldOne)
         playerFields.append(playerFieldTwo)
         
@@ -81,7 +81,7 @@ class PlayerViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            add.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
+            add.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 25),
             add.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             add.widthAnchor.constraint(equalToConstant: 40),
             add.heightAnchor.constraint(equalToConstant: 40)
@@ -113,7 +113,7 @@ class PlayerViewController: UIViewController {
     
     @objc func addPlayerTextField() {
         let playerFieldExtra: UITextField = UITextField()
-        playerFieldExtra.textColor = UIColor.accent()
+        playerFieldExtra.textColor = UIColor.text()
         playerFieldExtra.placeholder = "Player " + String(playerFields.count+1)
         playerFields.append(playerFieldExtra)
         stackView.addArrangedSubview(playerFieldExtra)

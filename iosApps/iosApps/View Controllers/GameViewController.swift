@@ -30,11 +30,11 @@ class GameViewController: UIViewController {
     
     func setUpView() {
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.text()
         
         text = UILabel(frame: CGRect(x:0, y:0, width:200, height:21))
         text.center = CGPoint(x:160, y:284)
-        text.textColor = UIColor.text()
+        text.textColor = UIColor.accentBackground()
         text.textAlignment = .center
         text.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         text.translatesAutoresizingMaskIntoConstraints = false

@@ -30,11 +30,11 @@ class OnlineGameViewController: UIViewController {
     
     func setUpView() {
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.text()
         
         text = UILabel(frame: CGRect(x:0, y:0, width:200, height:21))
         text.center = CGPoint(x:160, y:284)
-        text.textColor = .black
+        text.textColor = UIColor.background()
         text.textAlignment = .center
         text.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -76,6 +76,7 @@ class OnlineGameViewController: UIViewController {
         reportBtn.layer.borderWidth = 3
         reportBtn.layer.borderColor = CGColor.accentBackground()
         reportBtn.layer.cornerRadius = 20
+        reportBtn.alpha = 0.5
         reportBtn.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         reportBtn.clipsToBounds = true
         reportBtn.addTarget(self, action: #selector(report), for: .touchUpInside)
