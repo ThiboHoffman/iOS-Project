@@ -13,10 +13,7 @@ class GameViewController: UIViewController {
     var game: GameModel!
     var text: UILabel!
     var cards: [String] = []
-    var indices: [Int] = []
     var current: Int = 0
-    var cardsWanted: Int = 5
-    var cardsPresent: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,32 +39,9 @@ class GameViewController: UIViewController {
         text.isUserInteractionEnabled = true
         text.addGestureRecognizer(gestureRecognizer)
         
-        guard let path = Bundle.main.path(forResource: "cards", ofType: "json") else { return }
-
-        let url = URL(fileURLWithPath: path)
-
-        do {
-
-            let data = try Data(contentsOf: url)
-
-            let json = try JSON(data: data)
-            cardsPresent = json[game.type.lowercased()]["cards"].count
-            print(cardsPresent)
-            getIndices()
-            
-            print(indices)
-            for index in indices {
-                if let textString = json[game.type.lowercased()]["cards"].array?[index-1]["text"].string {
-                    cards.append(textString.replacingOccurrences(of: "${name}", with: String(game.players[Int.random(in: 0...(game.players.count-1))])))
-                }
-            }
-            print(cards)
-            showCard()
-            
-        } catch {
-
-            print(error)
-        }
+        cards = JSONManager.getCardsFromJSON(game: game)
+        
+        showCard()
         
         view.addSubview(text)
         
@@ -76,7 +50,9 @@ class GameViewController: UIViewController {
     func setUpConstraints() {
         NSLayoutConstraint.activate([
             text.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            text.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            text.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            text.widthAnchor.constraint(equalTo: view.widthAnchor),
+            text.heightAnchor.constraint(equalTo: view.heightAnchor)
         ])
     }
     
@@ -84,15 +60,7 @@ class GameViewController: UIViewController {
         text.text = cards[current]
     }
     
-    func getIndices() {
-        for _ in 0...cardsWanted {
-            var rand = Int.random(in: 1...cardsPresent)
-            while (indices.contains(rand)) {
-                rand = Int.random(in: 1...cardsPresent)
-            }
-            indices.append(rand)
-        }
-    }
+
     
     @IBAction func handleTap(sender:UITapGestureRecognizer) {
         current += 1

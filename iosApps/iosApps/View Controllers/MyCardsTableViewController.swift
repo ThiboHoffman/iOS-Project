@@ -20,7 +20,7 @@ class MyCardsViewController: UIViewController {
         
         view.backgroundColor = UIColor.background()
         title = "My cards"
-        
+                
         setUpView()
         setUpConstraints()
     }
@@ -52,6 +52,7 @@ class MyCardsViewController: UIViewController {
         navigationController?.pushViewController(newViewController, animated: true)
     }
 }
+
 extension MyCardsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.myCards.count

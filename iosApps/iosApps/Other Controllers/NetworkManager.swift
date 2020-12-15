@@ -7,8 +7,16 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 class NetworkManager {
+    
+    struct Connectivity {
+      static let sharedInstance = NetworkReachabilityManager()!
+      static var isConnectedToInternet:Bool {
+          return self.sharedInstance.isReachable
+        }
+    }
     
     static func login(email: String, password: String, completion: @escaping (LoginModel) -> Void) {
         

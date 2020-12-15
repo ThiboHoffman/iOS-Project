@@ -97,20 +97,30 @@ class ViewController: UIViewController {
     }
     
     @objc func login() {
-        let defaults = UserDefaults.standard
+        
+        if NetworkManager.Connectivity.isConnectedToInternet {
+            let defaults = UserDefaults.standard
 
-        if let token = defaults.object(forKey: "token") as? String {
-            NetworkManager.getMyCards() { cards in
-                let newViewController = MyCardsViewController()
-                newViewController.myCards = cards
-                self.removeSpinner()
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(self.logoutTapped))
-                self.navigationController?.pushViewController(newViewController, animated: true)
+            if let token = defaults.object(forKey: "token") as? String {
+                NetworkManager.getMyCards() { cards in
+                    let newViewController = MyCardsViewController()
+                    newViewController.myCards = cards
+                    self.removeSpinner()
+                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(self.logoutTapped))
+                    self.navigationController?.pushViewController(newViewController, animated: true)
+                }
+            } else {
+                let newViewController = LoginViewController()
+                navigationController?.pushViewController(newViewController, animated: true)
             }
-        } else {
-            let newViewController = LoginViewController()
-            navigationController?.pushViewController(newViewController, animated: true)
+         } else {
+            let alert = UIAlertController(title: "You are not connected to the internet.", message: "Please connect to internet to play the online game.", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            
+            self.present(alert, animated: true)
         }
+        
     }
     
     @objc func logoutTapped() {
@@ -133,31 +143,5 @@ class ViewController: UIViewController {
     @objc func pushNavViewController() {
         let newViewController = PlayerViewController()
         navigationController?.pushViewController(newViewController, animated: true)
-    }
-}
-
-var vSpinner : UIView?
-
-extension UIViewController {
-    func showSpinner(onView : UIView) {
-        let spinnerView = UIView.init(frame: onView.bounds)
-        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        let ai = UIActivityIndicatorView.init(style: .large)
-        ai.startAnimating()
-        ai.center = spinnerView.center
-        
-        DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
-            onView.addSubview(spinnerView)
-        }
-        
-        vSpinner = spinnerView
-    }
-    
-    func removeSpinner() {
-        DispatchQueue.main.async {
-            vSpinner?.removeFromSuperview()
-            vSpinner = nil
-        }
     }
 }

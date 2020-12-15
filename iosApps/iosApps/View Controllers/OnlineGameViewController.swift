@@ -45,8 +45,8 @@ class OnlineGameViewController: UIViewController {
         likeBtn = UIButton()
         likeBtn.setImage(UIImage(named: "likeIcon"), for: .normal)
         likeBtn.addTarget(self, action: #selector(like), for: .touchUpInside)
-        likeBtn.contentVerticalAlignment = .fill
         likeBtn.contentHorizontalAlignment = .fill
+        likeBtn.imageView?.contentMode = .scaleAspectFit
         likeBtn.alpha = 0.5
         likeBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         likeBtn.translatesAutoresizingMaskIntoConstraints = false
@@ -54,8 +54,8 @@ class OnlineGameViewController: UIViewController {
         dislikeBtn = UIButton()
         dislikeBtn.setImage(UIImage(named: "dislikeIcon"), for: .normal)
         dislikeBtn.addTarget(self, action: #selector(dislike), for: .touchUpInside)
-        dislikeBtn.contentVerticalAlignment = .fill
         dislikeBtn.contentHorizontalAlignment = .fill
+        dislikeBtn.imageView?.contentMode = .scaleAspectFit
         dislikeBtn.alpha = 0.5
         dislikeBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         dislikeBtn.translatesAutoresizingMaskIntoConstraints = false

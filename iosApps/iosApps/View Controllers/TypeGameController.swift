@@ -80,9 +80,17 @@ class TypeGameController: UIViewController {
     }
     
     @objc func pushOnlineViewController(sender: UIButton) {
-        let newViewController = OnlineSearchViewController()
-        newViewController.game = self.game
-        self.navigationController?.pushViewController(newViewController, animated: true)
+        if NetworkManager.Connectivity.isConnectedToInternet {
+            let newViewController = OnlineSearchViewController()
+            newViewController.game = self.game
+            self.navigationController?.pushViewController(newViewController, animated: true)
+         } else {
+            let alert = UIAlertController(title: "You are not connected to the internet.", message: "Please connect to internet to play the online game.", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            
+            self.present(alert, animated: true)
+        }
     }
     
     override var shouldAutorotate: Bool {
