@@ -106,6 +106,7 @@ class NetworkManager {
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
         }.resume()
     }
+    
     static func getCards(min: Int, max: Int, completion: @escaping ([CardOnline]) -> Void) {
         let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Card/Game/\(min)/\(max)")!
         let request = URLRequest(url: url)

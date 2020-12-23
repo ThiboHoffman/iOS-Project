@@ -63,7 +63,8 @@ extension UIButton {
         button.backgroundColor = UIColor.accentBackground()
         button.layer.borderWidth = 5
         button.layer.borderColor = CGColor.accent()
-        button.layer.cornerRadius = 45
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
         return button
     }
 }
@@ -93,4 +94,14 @@ extension UIViewController {
             vSpinner = nil
         }
     }
+    
+    func hideKeyboardWhenTappedAround() {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+            tap.cancelsTouchesInView = false
+            view.addGestureRecognizer(tap)
+        }
+        
+        @objc func dismissKeyboard() {
+            view.endEditing(true)
+        }
 }

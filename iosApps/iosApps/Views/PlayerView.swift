@@ -1,14 +1,14 @@
 //
-//  PlayerViewController.swift
+//  PlayerView.swift
 //  iosApps
 //
-//  Created by Thibo Hoffman on 09/11/2020.
+//  Created by Thibo Hoffman on 22/12/2020.
 //
 
+import Foundation
 import UIKit
 
-class PlayerViewController: UIViewController {
-
+class PlayerView: UIView {
     
     var stackView: UIStackView!
     var add: UIButton!
@@ -16,23 +16,27 @@ class PlayerViewController: UIViewController {
     var playerFields: [UITextField] = []
     var alert: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUpView()
+        setUpConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         setUpView()
         setUpConstraints()
     }
     
     func setUpView() {
         
-        view.backgroundColor = UIColor.background()
-        title = "Add players"
+        backgroundColor = UIColor.background()
 
         let playerFieldOne: UITextField = UITextField()
-        playerFieldOne.placeholder = "Player 1"
+        playerFieldOne.attributedPlaceholder = NSAttributedString(string: "Player 1", attributes: [NSAttributedString.Key.foregroundColor : UIColor.accent()])
         playerFieldOne.textColor = UIColor.text()
         let playerFieldTwo: UITextField = UITextField()
-        playerFieldTwo.placeholder = "Player 2"
+        playerFieldTwo.attributedPlaceholder = NSAttributedString(string: "Player 2", attributes: [NSAttributedString.Key.foregroundColor : UIColor.accent()])
         playerFieldTwo.textColor = UIColor.text()
         playerFields.append(playerFieldOne)
         playerFields.append(playerFieldTwo)
@@ -47,7 +51,7 @@ class PlayerViewController: UIViewController {
         add.clipsToBounds = true
         add.addTarget(self, action: #selector(addPlayerTextField), for: .touchUpInside)
         add.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(add)
+        addSubview(add)
         
         stackView = UIStackView()
         stackView.alignment = .center
@@ -56,13 +60,12 @@ class PlayerViewController: UIViewController {
         stackView.addArrangedSubview(playerFieldOne)
         stackView.addArrangedSubview(playerFieldTwo)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
+        addSubview(stackView)
         
         play = UIButton.choiceButton()
         play.setTitle("Play", for: .normal)
-        play.addTarget(self, action: #selector(pushNavViewController), for: .touchUpInside)
         play.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(play)
+        addSubview(play)
         
         alert = UILabel()
         alert.text = "At least 2 players required!"
@@ -71,62 +74,40 @@ class PlayerViewController: UIViewController {
         alert.textAlignment = .center
         alert.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         alert.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(alert)
+        addSubview(alert)
     }
     
     func setUpConstraints() {
         NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
         NSLayoutConstraint.activate([
             add.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 25),
-            add.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            add.centerXAnchor.constraint(equalTo: centerXAnchor),
             add.widthAnchor.constraint(equalToConstant: 40),
             add.heightAnchor.constraint(equalToConstant: 40)
         ])
         
         NSLayoutConstraint.activate([
-            play.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            play.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            play.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            play.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
+            play.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            play.centerXAnchor.constraint(equalTo: centerXAnchor),
+            play.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
+            play.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1)
         ])
         
         NSLayoutConstraint.activate([
-            alert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            alert.centerXAnchor.constraint(equalTo: centerXAnchor),
             alert.bottomAnchor.constraint(equalTo: play.topAnchor, constant: -10)
         ])
-    }
-    
-    
-    func createGame() -> GameModel {
-        let game = GameModel()
-        for playerField in playerFields {
-            if playerField.text != "" {
-                game.players.append(playerField.text!)
-            }
-        }
-        return game
     }
     
     @objc func addPlayerTextField() {
         let playerFieldExtra: UITextField = UITextField()
         playerFieldExtra.textColor = UIColor.text()
-        playerFieldExtra.placeholder = "Player " + String(playerFields.count+1)
+        playerFieldExtra.attributedPlaceholder = NSAttributedString(string: "Player " + String(playerFields.count + 1), attributes: [NSAttributedString.Key.foregroundColor : UIColor.accent()])
         playerFields.append(playerFieldExtra)
         stackView.addArrangedSubview(playerFieldExtra)
-    }
-    
-    @objc func pushNavViewController() {
-        let game: GameModel = createGame()
-        if (game.players.count >= 2) {
-            let newViewController = TypeGameController()
-            newViewController.game = game
-            navigationController?.pushViewController(newViewController, animated: true)
-        } else {
-            alert.isHidden = false
-        }
     }
 }

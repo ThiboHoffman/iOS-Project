@@ -28,6 +28,8 @@ class MyCardTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
+        backgroundColor = UIColor.background()
+
         previewLabel = UILabel()
         previewLabel.translatesAutoresizingMaskIntoConstraints = false
         previewLabel.font = .systemFont(ofSize: 14)
@@ -66,7 +68,7 @@ class MyCardTableViewCell: UITableViewCell {
         reportsLabel = UILabel()
         reportsLabel.translatesAutoresizingMaskIntoConstraints = false
         reportsLabel.font = .systemFont(ofSize: 15)
-        dislikesLabel.textColor = UIColor.text()
+        reportsLabel.textColor = UIColor.text()
         
         likesSV = UIStackView()
         likesSV.translatesAutoresizingMaskIntoConstraints = false

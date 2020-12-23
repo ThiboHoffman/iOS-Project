@@ -8,43 +8,36 @@
 import UIKit
 
 class MyCardsViewController: UIViewController {
-
-    var tableView: UITableView!
     
     var myCards: [CardOnline]! = nil
-    
+    var myCardsTableView = MyCardsTableView()
     let reuseIdentifier = "cardCellReuse"
-    
+
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = UIColor.background()
-        title = "My cards"
-                
+        view = myCardsTableView
         setUpView()
-        setUpConstraints()
     }
     
     func setUpView() {
+        title = "My cards"
         
-        tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(MyCardTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-        view.addSubview(tableView)
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(addTapped))
+        myCardsTableView.tableView.dataSource = self
+        myCardsTableView.tableView.delegate = self
+        myCardsTableView.tableView.register(MyCardTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
 
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(addTapped))
     }
     
-    func setUpConstraints() {
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+    override func viewWillDisappear(_ animated: Bool) {
+        if (self.isMovingFromParent) {
+            for controller in self.navigationController!.viewControllers as Array {
+                if controller.isKind(of: HomeViewController.self) {
+                    controller.viewDidLoad()
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    break
+                }
+            }
+        }
     }
     
     @objc func addTapped() {
@@ -61,6 +54,7 @@ extension MyCardsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MyCardTableViewCell
         let card = myCards[indexPath.row]
+        cell.backgroundColor = UIColor.background()
         cell.configure(for: card)
         return cell
     }
