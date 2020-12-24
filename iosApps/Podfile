@@ -7,7 +7,8 @@ target 'iosApps' do
 
   # Pods for iosApps
   pod 'Alamofire'
-
+  pod 'Google-Mobile-Ads-SDK'
+ 
   target 'iosAppsTests' do
     inherit! :search_paths
     # Pods for testing

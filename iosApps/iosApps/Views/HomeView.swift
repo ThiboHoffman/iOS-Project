@@ -5,6 +5,9 @@
 //  Created by Thibo Hoffman on 22/12/2020.
 //
 
+//ca-app-pub-3825893118571260~1541488240
+//ca-app-pub-3825893118571260/6682134288
+
 import Foundation
 import UIKit
 

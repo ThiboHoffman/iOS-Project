@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class TypeGameViewController: UIViewController {
     
     var game: GameModel!
     var typeGameView = TypeGameView()
+    
+    var interstitial: GADInterstitial!
     
     override func viewDidLoad() {
         view = typeGameView
@@ -22,6 +25,8 @@ class TypeGameViewController: UIViewController {
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         
+        interstitial = createAndLoadAd()
+        
         title = "Choose game type"
         typeGameView.casualBtn.addTarget(self, action: #selector(pushNavViewController), for: .touchUpInside)
         typeGameView.wildBtn.addTarget(self, action: #selector(pushNavViewController), for: .touchUpInside)
@@ -32,6 +37,12 @@ class TypeGameViewController: UIViewController {
         let newViewController = GameViewController()
         game.type = sender.currentTitle!
         newViewController.game = game
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+            interstitial = createAndLoadAd()
+          } else {
+            print("Ad wasn't ready")
+        }
         navigationController?.pushViewController(newViewController, animated: true)
     }
     
@@ -56,5 +67,14 @@ class TypeGameViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    func createAndLoadAd() -> GADInterstitial {
+
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        var request = GADRequest()
+        request.testDevices = ["2077ef9a63d2b398840261c8221a0c9b"]
+        interstitial.load(request)
+        return interstitial
     }
 }
