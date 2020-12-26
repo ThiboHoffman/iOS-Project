@@ -18,7 +18,7 @@ class NetworkManager {
         }
     }
     
-    static func login(email: String, password: String, completion: @escaping (LoginModel) -> Void) {
+    static func login(email: String, password: String, completion: @escaping (_ loginModel: LoginModel?, _ error: Bool?) -> ()) {
         
         guard let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Account/") else { return }
         
@@ -52,17 +52,17 @@ class NetworkManager {
                         let defaults = UserDefaults.standard
                         defaults.set(loginmodel.token, forKey: "token")
                         defaults.set(loginmodel.gebruikerID, forKey: "gebruikerID")
-                        completion(loginmodel)
+                        completion(loginmodel, false)
                     }
                     return
                 }
             }
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
-            return
+            return completion(nil, true)
         }.resume()
     }
     
-    static func registreer(username: String, email: String, password: String, passwordConfirmation: String, completion: @escaping (LoginModel) -> Void) {
+    static func registreer(username: String, email: String, password: String, passwordConfirmation: String, completion: @escaping (_ loginModel: LoginModel?, _ error: Bool?) -> Void) {
         
         guard let url = URL(string: "https://ioscardgame.azurewebsites.net/api/Account/Register") else { return }
         
@@ -98,12 +98,13 @@ class NetworkManager {
                         let defaults = UserDefaults.standard
                         defaults.set(loginmodel.token, forKey: "token")
                         defaults.set(loginmodel.gebruikerID, forKey: "gebruikerID")
-                        completion(loginmodel)
+                        completion(loginmodel, false)
                     }
                     return
                 }
             }
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+            completion(nil, true)
         }.resume()
     }
     

@@ -36,27 +36,27 @@ class RegisterView: UIView {
         backgroundColor = UIColor.background()
         
         usernameTF = UITextField()
-        usernameTF.placeholder = "Username"
         usernameTF.textContentType = .oneTimeCode
         usernameTF.textColor = UIColor.text()
+        usernameTF.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor : UIColor.accent()])
         
         emailTF = UITextField()
-        emailTF.placeholder = "Email"
         emailTF.textContentType = .oneTimeCode
         emailTF.textColor = UIColor.text()
+        emailTF.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor : UIColor.accent()])
 
         passwordTF = UITextField()
-        passwordTF.placeholder = "Password"
         passwordTF.isSecureTextEntry = true
         passwordTF.textContentType = .oneTimeCode
         passwordTF.textColor = UIColor.text()
-
+        passwordTF.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor : UIColor.accent()])
+        
         passwordConfTF = UITextField()
-        passwordConfTF.placeholder = "Password Confirmation"
         passwordConfTF.isSecureTextEntry = true
         passwordConfTF.textContentType = .oneTimeCode
         passwordConfTF.textAlignment = .center
         passwordConfTF.textColor = UIColor.text()
+        passwordConfTF.attributedPlaceholder = NSAttributedString(string: "Password Confirmation", attributes: [NSAttributedString.Key.foregroundColor : UIColor.accent()])
         
         registreerBtn = UIButton.choiceButton()
         registreerBtn.setTitle("Registreer", for: .normal)
@@ -71,7 +71,6 @@ class RegisterView: UIView {
         loginLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         loginLabel.isUserInteractionEnabled = true
         loginLabel.translatesAutoresizingMaskIntoConstraints = false
-
         addSubview(loginLabel)
         
         stackView = UIStackView()

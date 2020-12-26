@@ -34,13 +34,18 @@ class RegisterViewController: UIViewController {
             self.removeSpinner()
             registerView.errorLabel.isHidden = false
         } else {
-            NetworkManager.registreer(username: registerView.usernameTF.text!, email: registerView.emailTF.text!, password: registerView.passwordTF.text!, passwordConfirmation: registerView.passwordConfTF.text!) { loginmodel in
-                print("ingelogd")
-                NetworkManager.getMyCards() { cards in
-                    let newViewController = MyCardsViewController()
-                    newViewController.myCards = cards
+            NetworkManager.registreer(username: registerView.usernameTF.text!, email: registerView.emailTF.text!, password: registerView.passwordTF.text!, passwordConfirmation: registerView.passwordConfTF.text!) { loginmodel, error in
+                    
+                if (!error!) {
+                    NetworkManager.getMyCards() { cards in
+                        let newViewController = MyCardsViewController()
+                        newViewController.myCards = cards
+                        self.removeSpinner()
+                        self.navigationController?.pushViewController(newViewController, animated: true)
+                    }
+                } else {
+                    self.registerView.errorLabel.isHidden = false
                     self.removeSpinner()
-                    self.navigationController?.pushViewController(newViewController, animated: true)
                 }
             }
         }

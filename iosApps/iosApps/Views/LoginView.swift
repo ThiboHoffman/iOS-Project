@@ -34,13 +34,13 @@ class LoginView: UIView {
         backgroundColor = UIColor.background()
         
         emailTF = UITextField()
-        emailTF.placeholder = "Email"
         emailTF.textColor = UIColor.text()
+        emailTF.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor : UIColor.accent()])
 
         passwordTF = UITextField()
-        passwordTF.placeholder = "Password"
         passwordTF.isSecureTextEntry = true
         passwordTF.textColor = UIColor.text()
+        passwordTF.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor : UIColor.accent()])
 
         
         loginBtn = UIButton.choiceButton()

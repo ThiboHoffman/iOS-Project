@@ -43,7 +43,7 @@ class OnlineSearchViewController: UIViewController {
             case 1: max = 50
             case 2: max = 75
             case 3: max = 100
-            default: max = 0
+            default: max = 100
         }
         
         NetworkManager.getCards(min: min, max: max) { cards in

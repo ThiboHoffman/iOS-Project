@@ -34,15 +34,19 @@ class LoginViewController: UIViewController {
             self.removeSpinner()
             loginView.errorLabel.isHidden = false
         } else {
-            NetworkManager.login(email: loginView.emailTF.text!, password: loginView.passwordTF.text!) { loginmodel in
-                    print("ingelogd")
-                    self.showSpinner(onView: self.view)
+            NetworkManager.login(email: loginView.emailTF.text!, password: loginView.passwordTF.text!) { loginmodel,error  in
 
-                    NetworkManager.getMyCards() { cards in
-                        let newViewController = MyCardsViewController()
-                        newViewController.myCards = cards
+                    if (!error!) {
+                        NetworkManager.getMyCards() { cards in
+                            self.loginView.errorLabel.isHidden = true
+                            let newViewController = MyCardsViewController()
+                            newViewController.myCards = cards
+                            self.removeSpinner()
+                            self.navigationController?.pushViewController(newViewController, animated: true)
+                        }
+                    } else {
                         self.removeSpinner()
-                        self.navigationController?.pushViewController(newViewController, animated: true)
+                        self.loginView.errorLabel.isHidden = false
                     }
                     return
             }
