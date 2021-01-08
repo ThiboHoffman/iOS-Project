@@ -50,10 +50,6 @@ class GameViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    override var shouldAutorotate: Bool {
-        return false
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)

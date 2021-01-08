@@ -2,68 +2,68 @@
     "casual": {
         "cards": [
             {
-                "text": "${name} ZUIPEN 1"
+                "text": "Iedereen die een blauw kledingstuk aanheeft, neem een slok"
             },
             {
-                "text": "${name} ZUIPEN 2"
+                "text": "${name}, vertel een mop en als niemand lacht, neem een slok"
             },
             {
-                "text": "${name} ZUIPEN 3"
+                "text": "Rondje chipssmaken, wie niets meer weet, neemt een slok!"
             },
             {
-                "text": "${name} ZUIPEN 4"
+                "text": "De laatste die de grond raakt, neemt een slok"
             },
             {
-                "text": "${name} ZUIPEN 5"
+                "text": "${name}, geef iedereen een compliment"
             },
             {
-                "text": "${name} ZUIPEN 6"
+                "text": "${name}, spreek vanaf nu met een Duits accent"
             },
             {
-                "text": "${name} ZUIPEN 7"
+                "text": "${name}, spreek vanaf nu iedereen aan met hun achternaam"
             },
             {
-                "text": "${name} ZUIPEN 8"
+                "text": "${name}, vertel een gek verhaal"
             },
             {
-                "text": "${name} ZUIPEN 9"
+                "text": "Vertel een verhaal als groep: zeg elk om de beurt drie woorden"
             },
             {
-                "text": "${name} ZUIPEN 10"
+                "text": "Tel af, op 0 kijkt iedereen iemand aan, als je met 2 elkaar aankijkt, neem allebei een slok"
             }
         ]
     },
     "wild": {
         "cards": [
             {
-                "text": "${name} WILD ZUIPEN 1"
+                "text": "${name} WILD 1"
             },
             {
-                "text": "${name} WILD ZUIPEN 2"
+                "text": "${name} WILD 2"
             },
             {
-                "text": "${name} WILD ZUIPEN 3"
+                "text": "${name} WILD 3"
             },
             {
-                "text": "${name} WILD ZUIPEN 4"
+                "text": "${name} WILD 4"
             },
             {
-                "text": "${name} WILD ZUIPEN 5"
+                "text": "${name} WILD 5"
             },
             {
-                "text": "${name} WILD ZUIPEN 6"
+                "text": "${name} WILD 6"
             },
             {
-                "text": "${name} WILD ZUIPEN 7"
+                "text": "${name} WILD 7"
             },
             {
-                "text": "${name} WILD ZUIPEN 8"
+                "text": "${name} WILD 8"
             },
             {
-                "text": "${name} WILD ZUIPEN 9"
+                "text": "${name} WILD 9"
             },
             {
-                "text": "${name} WILD ZUIPEN 10"
+                "text": "${name} WILD 10"
             }
         ]
     }

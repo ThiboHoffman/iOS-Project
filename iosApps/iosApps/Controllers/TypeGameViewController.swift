@@ -22,9 +22,6 @@ class TypeGameViewController: UIViewController {
     }
     
     func setUpView() {
-        let value = UIInterfaceOrientation.portrait.rawValue
-        UIDevice.current.setValue(value, forKey: "orientation")
-        
         interstitial = createAndLoadAd()
         
         title = "Choose game type"
@@ -60,10 +57,6 @@ class TypeGameViewController: UIViewController {
         }
     }
     
-    override var shouldAutorotate: Bool {
-        return false
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -72,7 +65,7 @@ class TypeGameViewController: UIViewController {
     func createAndLoadAd() -> GADInterstitial {
 
         interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
-        var request = GADRequest()
+        let request = GADRequest()
         request.testDevices = ["2077ef9a63d2b398840261c8221a0c9b"]
         interstitial.load(request)
         return interstitial

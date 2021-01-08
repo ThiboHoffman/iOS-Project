@@ -57,12 +57,47 @@ class TypeGameView: UIView {
         addSubview(stackView)
     }
     
+    private var compactConstraints: [NSLayoutConstraint] = []
+    private var regularConstraints: [NSLayoutConstraint] = []
+    private var sharedConstraints: [NSLayoutConstraint] = []
+    
     func setUpConstraints() {
-        NSLayoutConstraint.activate([
+        
+        sharedConstraints.append(contentsOf: [
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+
+        compactConstraints.append(contentsOf: [
             stackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7),
             stackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8)
         ])
+
+        regularConstraints.append(contentsOf: [
+            stackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
+            stackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4)
+        ])
+        
+        layoutTrait(traitCollection: self.traitCollection)
+    }
+    
+    func layoutTrait(traitCollection:UITraitCollection) {
+        if (!sharedConstraints[0].isActive) {
+           // activating shared constraints
+           NSLayoutConstraint.activate(sharedConstraints)
+        }
+        if traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .regular {
+            if regularConstraints.count > 0 && regularConstraints[0].isActive {
+                NSLayoutConstraint.deactivate(regularConstraints)
+            }
+            // activating compact constraints
+            NSLayoutConstraint.activate(compactConstraints)
+        } else {
+            if compactConstraints.count > 0 && compactConstraints[0].isActive {
+                NSLayoutConstraint.deactivate(compactConstraints)
+            }
+            // activating regular constraints
+            NSLayoutConstraint.activate(regularConstraints)
+        }
     }
 }

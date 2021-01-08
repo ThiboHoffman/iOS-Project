@@ -55,11 +55,7 @@ class OnlineSearchViewController: UIViewController {
             self.navigationController?.pushViewController(newViewController, animated: true)
         }
     }
-    
-    override var shouldAutorotate: Bool {
-        return false
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)

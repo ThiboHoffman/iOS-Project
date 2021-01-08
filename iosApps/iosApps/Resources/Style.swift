@@ -56,15 +56,17 @@ extension CGColor
 }
 
 extension UIButton {
+    
     class func choiceButton() -> UIButton {
         let button: UIButton = UIButton()
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 36)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 32)
         button.setTitleColor(UIColor.text(), for: .normal)
         button.backgroundColor = UIColor.accentBackground()
         button.layer.borderWidth = 5
         button.layer.borderColor = CGColor.accent()
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
+        
         return button
     }
 }

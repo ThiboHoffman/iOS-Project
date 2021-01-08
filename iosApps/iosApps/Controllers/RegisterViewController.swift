@@ -54,5 +54,4 @@ class RegisterViewController: UIViewController {
     @IBAction func handleTap(sender:UITapGestureRecognizer) {
         self.navigationController?.popViewController(animated: true)
     }
-
 }
